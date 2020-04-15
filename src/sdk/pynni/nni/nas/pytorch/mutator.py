@@ -3,7 +3,7 @@
 
 import logging
 from collections import defaultdict
-
+import json
 import numpy as np
 import torch
 
@@ -235,3 +235,14 @@ class Mutator(BaseMutator):
         result = self._cache[mutable.key]
         logger.debug("Decision %s: %s", mutable.key, result)
         return result
+
+    def import_dic(self,dic):
+        self._cache = dic
+
+    def import_json(self,file):
+        with open(file) as f:
+            data = json.load(f)
+        dic = dict()
+        for k in data:
+            dic[k] = torch.BoolTensor(data[k])
+        self.import_dic(dic)
