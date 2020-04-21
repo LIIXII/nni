@@ -12,12 +12,12 @@ import torch
 from .base_trainer import BaseTrainer
 
 _logger = logging.getLogger(__name__)
-logger.setLevel(level = logging.INFO)
+_logger.setLevel(level = logging.INFO)
 handler = logging.FileHandler("log.txt")
 handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
-logger.addHandler(handler)
+_logger.addHandler(handler)
 
 class TorchTensorEncoder(json.JSONEncoder):
     def default(self, o):  # pylint: disable=method-hidden
